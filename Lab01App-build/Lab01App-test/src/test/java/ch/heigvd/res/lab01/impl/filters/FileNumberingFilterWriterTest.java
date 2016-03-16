@@ -111,4 +111,22 @@ public class FileNumberingFilterWriterTest {
     Assert.assertEquals(expected, stringWriter.toString());
   }
 
+    @Test
+  public void itShouldWorkWhenThereAreOneTwoOrThreeDigitsInTheLineNumber() throws IOException {
+    StringWriter referenceWriter = new StringWriter();
+    StringWriter stringWriter = new StringWriter();
+    FileNumberingFilterWriter writer = new FileNumberingFilterWriter(stringWriter);
+    for (int i=1; i< 120; i++) {
+      writer.write("content\n");
+      referenceWriter.write(i + "\tcontent\n");
+    }
+    writer.write("last");
+    referenceWriter.write(120 + "\tlast");
+    
+    stringWriter.close();
+    String computedValue = stringWriter.toString();
+    String referenceValue = referenceWriter.toString();
+    Assert.assertEquals(referenceValue, computedValue);
+  }
+
 }
