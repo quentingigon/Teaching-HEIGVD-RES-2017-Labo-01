@@ -1,7 +1,7 @@
-# Teaching-HEIGVD-RES-2015-Labo-01
+# Teaching-HEIGVD-RES-2017-Labo-01
 
 
-### About the 2016 version of this lab
+### About the 2017 version of this lab
 
 Before reading this documentation and diving into the code, you should watch [this webcast](https://www.youtube.com/watch?v=qgncWAUqcbY&index=1&list=PLfKkysTy70QYD00EqEabdwyDNTPwLcsFV), which shows a **demo** of the application that you will implement. Later on, you might also watch [this webcast](https://www.youtube.com/watch?v=v_ZpVgf0lGc&index=2&list=PLfKkysTy70QYD00EqEabdwyDNTPwLcsFV), which gives you some hints about the **code structure**.
 
