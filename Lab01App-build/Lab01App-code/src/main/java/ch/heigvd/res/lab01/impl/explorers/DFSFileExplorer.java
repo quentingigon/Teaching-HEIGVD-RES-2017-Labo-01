@@ -2,6 +2,7 @@ package ch.heigvd.res.lab01.impl.explorers;
 
 import ch.heigvd.res.lab01.interfaces.IFileExplorer;
 import ch.heigvd.res.lab01.interfaces.IFileVisitor;
+
 import java.io.File;
 
 /**
@@ -28,10 +29,10 @@ public class DFSFileExplorer implements IFileExplorer {
                 for (int i = 0; i < listFiles.length; i++) {
 
                     if (listFiles[i].isFile())
-                        visitor.visit(listFiles[i]);
+                        visitor.visit(listFiles[i]); // DFS
 
                 }
-                
+
                 for (int i = 0; i < listFiles.length; i++) {
                     if (listFiles[i].isDirectory())
                         explore(listFiles[i], visitor);

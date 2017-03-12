@@ -25,7 +25,7 @@ public class Application implements IApplication {
      * This constant defines where the quotes will be stored. The path is relative
      * to where the Java application is invoked.
      */
-    public static String WORKSPACE_DIRECTORY = "./workspace/quotes";
+    public static final String WORKSPACE_DIRECTORY = "./workspace/quotes";
 
     private static final Logger LOG = Logger.getLogger(Application.class.getName());
 
@@ -98,7 +98,7 @@ public class Application implements IApplication {
      *
      * @throws IOException
      */
-    void clearOutputDirectory() throws IOException {
+    public void clearOutputDirectory() throws IOException {
         FileUtils.deleteDirectory(new File(WORKSPACE_DIRECTORY));
     }
 
@@ -117,9 +117,9 @@ public class Application implements IApplication {
      * @param filename the name of the file to create and where to store the quote text
      * @throws IOException
      */
-    void storeQuote(Quote quote, String filename) throws IOException {
+    private void storeQuote(Quote quote, String filename) throws IOException {
 
-        String path = new String(WORKSPACE_DIRECTORY);
+        String path = WORKSPACE_DIRECTORY;
 
         // creation of the path
         for (String s : quote.getTags()) {
@@ -141,7 +141,7 @@ public class Application implements IApplication {
      * This method uses a IFileExplorer to explore the file system and prints the name of each
      * encountered file and directory.
      */
-    void printFileNames(final Writer writer) {
+    public void printFileNames(final Writer writer) {
         IFileExplorer explorer = new DFSFileExplorer();
         explorer.explore(new File(WORKSPACE_DIRECTORY), new IFileVisitor() {
             @Override
