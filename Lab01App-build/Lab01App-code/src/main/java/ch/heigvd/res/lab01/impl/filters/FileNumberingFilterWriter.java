@@ -17,25 +17,49 @@ import java.util.logging.Logger;
  */
 public class FileNumberingFilterWriter extends FilterWriter {
 
-  private static final Logger LOG = Logger.getLogger(FileNumberingFilterWriter.class.getName());
+    private static final Logger LOG = Logger.getLogger(FileNumberingFilterWriter.class.getName());
 
-  public FileNumberingFilterWriter(Writer out) {
-    super(out);
-  }
+    private int lineNumber = 1;
+    private int lastSeparator;
 
-  @Override
-  public void write(String str, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
 
-  @Override
-  public void write(char[] cbuf, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
+    public FileNumberingFilterWriter(Writer out) {
+        super(out);
+    }
 
-  @Override
-  public void write(int c) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
+    @Override
+    public void write(String str, int off, int len) throws IOException {
+        write(str.toCharArray(), off, len);
+    }
 
+    @Override
+    public void write(char[] cbuf, int off, int len) throws IOException {
+        for (int i = 0; i < len; i++) {
+            write(cbuf[off + i]);
+        }
+    }
+
+    @Override
+    public void write(int c) throws IOException {
+
+        int currentSeparator = c;
+
+        // first line
+        if (lineNumber == 1)
+            writeLine();
+
+        if ((lastSeparator == '\r' && currentSeparator != '\n'))
+            writeLine();
+
+        out.write(currentSeparator);
+
+        if (currentSeparator == '\n')
+            writeLine();
+
+        lastSeparator = currentSeparator;
+    }
+
+    private void writeLine() throws IOException {
+        out.write(lineNumber++ + "\t");
+    }
 }
